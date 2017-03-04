@@ -14,9 +14,10 @@ struct APIQuery {
     var headers: [String: String]?
     var httpMethod: Alamofire.HTTPMethod
     var path: String
-    var parameters: [String: AnyObject]?
+    var parameters: [String: AnyObject] = ["api_key": "4f055432d1ce1268281241a03695cf2b" as AnyObject]
     var paremeterEncoding: Alamofire.ParameterEncoding = URLEncoding.default
     var cachePolicy: String = ""
+    static let imageUrl = "https://image.tmdb.org/t/p/w500/"
     
     init(httpMethod: Alamofire.HTTPMethod, path: String) {
         self.httpMethod = httpMethod
@@ -26,7 +27,11 @@ struct APIQuery {
     init(httpMethod: Alamofire.HTTPMethod, path: String, parameters: [String: AnyObject]?) {
         self.httpMethod = httpMethod
         self.path = path
-        self.parameters = parameters
+        self.parameters = self.parameters.merged(with: parameters!)
+    }
+    
+    static func getImageUrl(with imagePath: String) -> String {
+        return self.imageUrl+imagePath
     }
     
 }

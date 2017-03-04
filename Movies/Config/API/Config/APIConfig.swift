@@ -15,7 +15,7 @@ enum APIConfig {
     var source: (host: String, headers: [String: String]?) {
         switch self {
         case .default:
-            return (host: "http://54.172.134.1", headers: nil)
+            return (host: "https://api.themoviedb.org/3", headers: nil)
         }
     }
 }
