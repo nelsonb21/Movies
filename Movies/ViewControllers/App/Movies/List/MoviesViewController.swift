@@ -87,6 +87,14 @@ class MoviesViewController: UIViewController {
             }
         })
     }
+    
+    //MARK: - Methods
+    
+    func openMovieDetail(movieId: String) {
+        guard let moviesDetailViewController = UIStoryboard.viewController(withIdentifier: "MoviesDetailViewController") as? MoviesDetailViewController else { return }
+        moviesDetailViewController.movieId = movieId
+        navigationController?.pushViewController(moviesDetailViewController, animated: true)
+    }
 
 }
 

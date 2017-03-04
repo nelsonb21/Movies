@@ -19,11 +19,11 @@ class Movie: Object, Mappable {
     dynamic var overview: String?
     dynamic var releaseDate: String?
     dynamic var originalLanguage: String?
+    dynamic var homepage: String?
     var adult = RealmOptional<Bool>()
     var popularity = RealmOptional<Double>()
     var hasVideo = RealmOptional<Bool>()
     var voteAverage = RealmOptional<Double>()
-    //dynamic var videoPath: String?
     
     //MARK: - Init
     
@@ -44,6 +44,7 @@ class Movie: Object, Mappable {
         overview <- map["overview"]
         releaseDate <- map["release_date"]
         originalLanguage <- map["original_language"]
+        homepage <- map["homepage"]
         adult.value <- map["adult"]
         popularity.value <- map["popularity"]
         hasVideo.value <- map["video"]

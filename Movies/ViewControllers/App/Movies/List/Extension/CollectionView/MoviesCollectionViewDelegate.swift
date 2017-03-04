@@ -21,7 +21,8 @@ extension MoviesCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let movie = movies[indexPath.row]
+        openMovieDetail(movieId: "\(movie.id.value!)")
     }
     
 }

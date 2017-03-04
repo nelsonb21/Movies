@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SoH-am-TTr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Movies Detail View Controller-->
         <scene sceneID="98H-JD-5YN">
             <objects>
-                <viewController storyboardIdentifier="MoviesDetailViewController" id="s1P-0F-Hqy" customClass="MoviesDetailViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesDetailViewController" automaticallyAdjustsScrollViewInsets="NO" id="s1P-0F-Hqy" customClass="MoviesDetailViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hj5-uf-9ZX"/>
                         <viewControllerLayoutGuide type="bottom" id="afF-QK-8YE"/>
@@ -20,13 +20,48 @@
                     <view key="view" contentMode="scaleToFill" id="McE-Ew-y27">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="01H-Fp-IF9">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIk-8E-P3p">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LSO-qx-2FN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-hV-mcR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="afF-QK-8YE" firstAttribute="top" secondItem="IXx-hV-mcR" secondAttribute="bottom" id="1bP-yW-P1q"/>
+                            <constraint firstAttribute="trailing" secondItem="01H-Fp-IF9" secondAttribute="trailing" id="COD-JU-p4D"/>
+                            <constraint firstAttribute="trailing" secondItem="IXx-hV-mcR" secondAttribute="trailing" id="Fdk-P2-bMD"/>
+                            <constraint firstItem="VIk-8E-P3p" firstAttribute="top" secondItem="hj5-uf-9ZX" secondAttribute="bottom" id="Mar-MV-qYz"/>
+                            <constraint firstItem="afF-QK-8YE" firstAttribute="top" secondItem="01H-Fp-IF9" secondAttribute="bottom" id="Pkg-2Z-gqX"/>
+                            <constraint firstItem="IXx-hV-mcR" firstAttribute="leading" secondItem="McE-Ew-y27" secondAttribute="leading" id="RH3-99-D3L"/>
+                            <constraint firstItem="01H-Fp-IF9" firstAttribute="top" secondItem="hj5-uf-9ZX" secondAttribute="bottom" id="eVC-cP-ovB"/>
+                            <constraint firstItem="afF-QK-8YE" firstAttribute="top" secondItem="VIk-8E-P3p" secondAttribute="bottom" id="hQj-7T-cJG"/>
+                            <constraint firstItem="VIk-8E-P3p" firstAttribute="leading" secondItem="McE-Ew-y27" secondAttribute="leading" id="nWE-V5-WFU"/>
+                            <constraint firstAttribute="trailing" secondItem="VIk-8E-P3p" secondAttribute="trailing" id="q31-XY-Nbg"/>
+                            <constraint firstItem="IXx-hV-mcR" firstAttribute="top" secondItem="hj5-uf-9ZX" secondAttribute="bottom" id="qLZ-OT-AGk"/>
+                            <constraint firstItem="01H-Fp-IF9" firstAttribute="leading" secondItem="McE-Ew-y27" secondAttribute="leading" id="vw6-oe-y7a"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7Ec-lb-Dvn"/>
+                    <connections>
+                        <outlet property="movieBackgroundImageView" destination="01H-Fp-IF9" id="JCX-1v-zev"/>
+                        <outlet property="tableView" destination="IXx-hV-mcR" id="SSP-eQ-M16"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sf9-Gu-Kxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="183.95802098950526"/>
+            <point key="canvasLocation" x="830" y="184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tcs-TM-Jjg">
