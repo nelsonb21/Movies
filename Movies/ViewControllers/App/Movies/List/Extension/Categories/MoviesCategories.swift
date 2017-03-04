@@ -22,6 +22,7 @@ extension MoviesCategories {
         guard let category = categorieButton.title(for: .normal) else { return }
         setupCategoryOptions(selectedButton: categorieButton)
         loadMovies(with: Categories.init(rawValue: category)!)
+        searchController?.searchBar.resignFirstResponder()
     }
     
     private func setupCategoryOptions(selectedButton: UIButton) {

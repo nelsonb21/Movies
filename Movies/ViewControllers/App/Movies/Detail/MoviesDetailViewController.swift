@@ -33,7 +33,7 @@ class MoviesDetailViewController: UIViewController {
                         self.videos = videos
                     }
                     self.setupView()
-                })
+                })      
             }
         }
     }

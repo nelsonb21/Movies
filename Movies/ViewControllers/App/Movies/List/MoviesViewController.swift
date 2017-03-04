@@ -12,19 +12,19 @@ class MoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView?
     @IBOutlet var categoriesButton: [UIButton]?
+    @IBOutlet weak var categoriesViewTopConstraint: NSLayoutConstraint?
     
     var movies: [Movie] = []
+    
+    var searchController: UISearchController?
 
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         setupView()
         loadPopularMovies()
-        
-        /*MovieController.detail(with: "341174") { (result, error) in
-            print(result)
-        }*/
         
         /*MovieController.search(with: "thor") { (result, error) in
             print(result)
@@ -35,6 +35,18 @@ class MoviesViewController: UIViewController {
         collectionView?.register(withIdentifier: "MoviesCollectionViewCell")
         collectionView?.dataSource = self
         collectionView?.delegate = self
+    }
+    
+    private func setupNavBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.searchBar.placeholder = "Search for movies"
+        searchController?.searchBar.tintColor = .black
+        searchController?.searchBar.barStyle = .default
+        searchController?.searchBar.returnKeyType = .done
+        searchController?.searchBar.delegate = self
+        
+        navigationItem.titleView = searchController?.searchBar
     }
     
     //MARK: - IBActions

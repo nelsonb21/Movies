@@ -124,6 +124,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZeN-pm-Q9n"/>
                     <connections>
+                        <outlet property="categoriesViewTopConstraint" destination="KqK-W0-VSb" id="G06-8G-FG9"/>
                         <outlet property="collectionView" destination="CKV-Mx-Dbe" id="Xpq-QI-jyj"/>
                         <outletCollection property="categoriesButton" destination="INL-Eh-Z26" collectionClass="NSMutableArray" id="shw-wg-cPh"/>
                         <outletCollection property="categoriesButton" destination="zQf-Xj-mkU" collectionClass="NSMutableArray" id="WPX-hU-KtT"/>
