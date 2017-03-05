@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ObjectMapper
+import RealmSwift
 
 class MoviesViewController: UIViewController {
     
@@ -25,10 +27,6 @@ class MoviesViewController: UIViewController {
         setupNavBar()
         setupView()
         loadPopularMovies()
-        
-        /*MovieController.search(with: "thor") { (result, error) in
-            print(result)
-        }*/
     }
     
     private func setupView() {
@@ -74,8 +72,11 @@ class MoviesViewController: UIViewController {
         MovieController.list(with: .listPopularity(), completion: { (result, error) in
             if error == nil {
                 guard let movies = result as? [Movie] else { return }
+                MovieController.update(movies: movies)
                 self.movies = movies
                 self.collectionView?.reloadData()
+            } else {
+                self.loadLocalMovies()
             }
         })
     }
@@ -84,8 +85,11 @@ class MoviesViewController: UIViewController {
         MovieController.list(with: .listTopRated(), completion: { (result, error) in
             if error == nil {
                 guard let movies = result as? [Movie] else { return }
+                MovieController.update(movies: movies)
                 self.movies = movies
                 self.collectionView?.reloadData()
+            } else {
+                self.loadLocalMovies()
             }
         })
     }
@@ -94,13 +98,51 @@ class MoviesViewController: UIViewController {
         MovieController.list(with: .listUpcoming(), completion: { (result, error) in
             if error == nil {
                 guard let movies = result as? [Movie] else { return }
+                MovieController.update(movies: movies)
                 self.movies = movies
                 self.collectionView?.reloadData()
+            } else {
+                self.loadLocalMovies()
             }
         })
     }
     
+    func searchMovies(with query: String) {
+        MovieController.search(with: query) { (result, error) in
+            if error == nil {
+                guard let movies = result as? [Movie] else { return }
+                self.movies = movies
+                self.collectionView?.reloadData()
+            } else {
+                self.searchLocalMovies(with: query)
+            }
+        }
+    }
+    
     //MARK: - Methods
+    
+    private func loadLocalMovies() {
+        MovieController.listMoviesLocally(with: "popularity") { (result, error) in
+            if error == nil {
+                guard let movies = result as? Results<Movie> else { return }
+                self.movies = movies.flatMap{$0}
+                self.collectionView?.reloadData()
+            }
+        }
+    }
+    
+    private func searchLocalMovies(with query: String) {
+        MovieController.listMoviesLocally(with: "popularity") { (result, error) in
+            if error == nil {
+                guard let movies = result as? Results<Movie> else { return }
+                self.movies = movies.flatMap{$0}
+                self.movies = self.movies.filter({ (movie) -> Bool in
+                    return movie.title?.range(of: query) != nil
+                })
+                self.collectionView?.reloadData()
+            }
+        }
+    }
     
     func openMovieDetail(movieId: String) {
         guard let moviesDetailViewController = UIStoryboard.viewController(withIdentifier: "MoviesDetailViewController") as? MoviesDetailViewController else { return }

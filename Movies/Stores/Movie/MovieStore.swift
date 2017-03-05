@@ -33,6 +33,14 @@ struct MovieStore {
         }
     }
     
+    static func update(movies: [Movie]) {
+        try! realm.write {
+            movies.forEach { (movie) in
+                realm.add(movie, update: true)
+            }
+        }
+    }
+    
     static func delete(movie: Movie) {
         try! realm.write {
             realm.delete(movie)
@@ -46,7 +54,7 @@ struct MovieStore {
     }
     
     static func listMovies(with sortBy: String, completion: AppCompletion) {
-        completion(realm.objects(Movie.self).sorted(byKeyPath: sortBy, ascending: true), nil)
+        completion(realm.objects(Movie.self).sorted(byKeyPath: sortBy, ascending: false), nil)
     }
     
     static func show(movie: Movie) -> Movie? {

@@ -50,8 +50,16 @@ struct MovieController {
         MovieStore.save(movie: movie)
     }
     
+    static func save(movies: [Movie]) {
+        MovieStore.save(movies: movies)
+    }
+    
     static func update(movie: Movie) {
         MovieStore.update(movie: movie)
+    }
+    
+    static func update(movies: [Movie]) {
+        MovieStore.update(movies: movies)
     }
     
     static func delete(movie: Movie) {

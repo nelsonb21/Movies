@@ -38,13 +38,7 @@ extension MoviesSearchBar: UISearchBarDelegate {
     }
     
     func openSearchResults(query: String) {
-        MovieController.search(with: query) { (result, error) in
-            if error == nil {
-                guard let movies = result as? [Movie] else { return }
-                self.movies = movies
-                self.collectionView?.reloadData()
-            }
-        }
+        searchMovies(with: query)
     }
     
 }
